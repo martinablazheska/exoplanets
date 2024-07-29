@@ -10,13 +10,14 @@ public class ExoplanetMapper {
     public ExoplanetDto exoplanetMapper(Exoplanet exoplanet) {
         String exoplanetName = exoplanet.getPl_name();
         String hostStarName = exoplanet.getHostname();
+        Double hostAge = exoplanet.getSt_age();
         Double exoplanetOrbitalPeriod = exoplanet.getPl_orbper();
         Double exoplanetEarthRadius = exoplanet.getPl_rade();
         Double exoplanetEarthMass = exoplanet.getPl_bmasse();
+        Double exoplanetDensity = exoplanet.getPl_dens();
+        Double distance = exoplanet.getSy_dist();
 
-        ExoplanetDto exoplanetDto = new ExoplanetDto(exoplanetName, hostStarName, exoplanetOrbitalPeriod,
-                exoplanetEarthRadius, exoplanetEarthMass);
-
-        return exoplanetDto;
+        return new ExoplanetDto(exoplanetName, hostStarName, hostAge, exoplanetOrbitalPeriod,
+                exoplanetEarthRadius, exoplanetEarthMass, exoplanetDensity, distance);
     }
 }
