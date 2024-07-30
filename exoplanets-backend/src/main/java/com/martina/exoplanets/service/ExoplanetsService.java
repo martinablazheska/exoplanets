@@ -14,7 +14,7 @@ public class ExoplanetsService {
 
     private static final String NASA_EXOPLANETS_API_URL = "https://exoplanetarchive.ipac.caltech" +
             ".edu/TAP/sync?query=select+pl_name,hostname,st_age,pl_orbper,pl_rade,pl_bmasse," +
-            "pl_dens,sy_dist+from+pscomppars&format=json";
+            "pl_dens,sy_dist,discoverymethod+from+pscomppars&format=json";
 
     private final WebClient webClient;
     private final ExoplanetMapper exoplanetMapper;

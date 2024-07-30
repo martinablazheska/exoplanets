@@ -16,8 +16,9 @@ public class ExoplanetMapper {
         Double exoplanetEarthMass = exoplanet.getPl_bmasse();
         Double exoplanetDensity = exoplanet.getPl_dens();
         Double distance = exoplanet.getSy_dist();
+        String discoveryMethod = exoplanet.getDiscoverymethod();
 
         return new ExoplanetDto(exoplanetName, hostStarName, hostAge, exoplanetOrbitalPeriod,
-                exoplanetEarthRadius, exoplanetEarthMass, exoplanetDensity, distance);
+                exoplanetEarthRadius, exoplanetEarthMass, exoplanetDensity, distance, discoveryMethod);
     }
 }

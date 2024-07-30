@@ -16,5 +16,6 @@ public class ExoplanetDto {
     private Double exoplanetEarthMass; // exoplanet mass  measured in units of Earth's mass
     private Double exoplanetDensity; // exoplanet density measured in g/cm^3
     private Double distance; // distance to the planetary system measured in units of parasecs
+    private String discoveryMethod; // method by which the planet was first identified
 
 }

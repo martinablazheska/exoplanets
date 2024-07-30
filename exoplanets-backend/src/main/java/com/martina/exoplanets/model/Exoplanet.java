@@ -14,4 +14,5 @@ public class Exoplanet {
     private Double pl_bmasse;
     private Double pl_dens;
     private Double sy_dist;
+    private String discoverymethod;
 }
