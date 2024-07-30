@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { getExoplanets } from './services/ExoplanetsService';
 import ExoplanetType from './types/ExoplanetType';
 import Chart from './chart/Chart';
+import filterExoplanets from './utils/filterExoplanets';
 
 function App() {
   const [exoplanets, setExoplanets] = useState<ExoplanetType[] | null>(null);
@@ -12,7 +13,7 @@ function App() {
       try {
         setIsLoading(true);
         const data = (await getExoplanets()) as ExoplanetType[];
-        setExoplanets(data);
+        setExoplanets(filterExoplanets(data));
       } catch (error) {
         console.log(error);
       } finally {

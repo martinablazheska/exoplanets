@@ -1,12 +1,17 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import ExoplanetType from '../types/ExoplanetType';
+import drawChart from './drawChart';
 
 const Chart: React.FC<{
   exoplanets: ExoplanetType[];
   width: number;
   height: number;
 }> = ({ exoplanets, width, height }) => {
-  const chartRef = useRef(null);
+  const chartRef = useRef<SVGSVGElement | null>(null);
+
+  useEffect(() => {
+    chartRef.current && drawChart(chartRef.current, exoplanets, width, height);
+  }, [chartRef, exoplanets, width, height]);
 
   return (
     <svg viewBox={`0 0 ${width} ${height}`} ref={chartRef}>

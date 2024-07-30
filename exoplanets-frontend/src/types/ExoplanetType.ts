@@ -3,10 +3,11 @@ type ExoplanetType = {
   hostStarName: string;
   hostStarAge: number | null;
   exoplanetOrbitalPeriod: number | null;
-  exoplanetEarthRadius: number | null;
-  exoplanetEarthMass: number | null;
+  exoplanetEarthRadius: number;
+  exoplanetEarthMass: number;
   exoplanetDensity: number | null;
-  distance: number | null;
+  distance: number;
+  discoveryMethod: string;
 };
 
 export default ExoplanetType;
