@@ -2,13 +2,24 @@ import {
   extent,
   scaleOrdinal,
   scaleSqrt,
-  schemeTableau10,
+  schemePaired,
   select,
   axisBottom,
   axisLeft,
   scaleLog,
+  scaleSymlog,
 } from 'd3';
 import ExoplanetType from '../types/ExoplanetType';
+
+const margin = {
+  top: 50,
+  right: 100,
+  bottom: 50,
+  left: 100,
+};
+
+const minRadius = 3;
+const maxRadius = 15;
 
 const drawChart = (
   svg: SVGSVGElement,
@@ -35,12 +46,21 @@ const drawChart = (
     ...new Set(exoplanets.map((exoplanet) => exoplanet.discoveryMethod)),
   ];
 
-  const xScale = scaleSqrt().domain(distanceExtent).range([0, width]);
-  const yScale = scaleLog().domain(massExtent).range([height, 0]);
-  const radiusScale = scaleSqrt().domain(radiusExtent).range([3, 30]);
+  const xScale = scaleSymlog()
+    .domain(distanceExtent)
+    .range([margin.left, width - margin.right]);
+
+  const yScale = scaleLog()
+    .domain(massExtent)
+    .range([height - margin.top, margin.bottom]);
+
+  const radiusScale = scaleSqrt()
+    .domain(radiusExtent)
+    .range([minRadius, maxRadius]);
+
   const discoveryScale = scaleOrdinal()
     .domain(discoveryMethods)
-    .range(schemeTableau10);
+    .range(schemePaired);
 
   //circles
   select(svg)
@@ -60,14 +80,18 @@ const drawChart = (
   //axes
   select(svg)
     .append('g')
-    .call(axisBottom(xScale).ticks(100))
-    .attr('transform', `translate(0, ${height})`)
-    .call((g) => g.select('.domain').remove());
+    .call(axisBottom(xScale).ticks(5))
+    .attr(
+      'transform',
+      `translate(${-maxRadius}, ${height - margin.bottom + maxRadius})`,
+    );
+  // .call((g) => g.select('.domain').remove());
 
   select(svg)
     .append('g')
-    .call(axisLeft(yScale).ticks(10))
-    .call((g) => g.select('.domain').remove());
+    .call(axisLeft(yScale).ticks(5))
+    .attr('transform', `translate(${margin.left - maxRadius}, ${maxRadius})`);
+  // .call((g) => g.select('.domain').remove());
 };
 
 export default drawChart;

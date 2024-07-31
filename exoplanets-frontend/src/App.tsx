@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { getExoplanets } from './services/ExoplanetsService';
+import filterExoplanets from './utils/filterExoplanets';
 import ExoplanetType from './types/ExoplanetType';
 import Chart from './chart/Chart';
-import filterExoplanets from './utils/filterExoplanets';
 
 function App() {
   const [exoplanets, setExoplanets] = useState<ExoplanetType[] | null>(null);
@@ -24,12 +24,12 @@ function App() {
   }, []);
 
   return (
-    <div style={{ width: '100vw' }}>
+    <div style={{ width: '100vw', display: 'flex', justifyContent: 'center' }}>
       {exoplanets && !isLoading && (
         <Chart
           exoplanets={exoplanets}
-          height={window.innerHeight}
-          width={window.innerWidth}
+          height={window.innerHeight - 100}
+          width={window.innerWidth - 100}
         />
       )}
     </div>

@@ -11,12 +11,12 @@ const Chart: React.FC<{
 
   useEffect(() => {
     chartRef.current && drawChart(chartRef.current, exoplanets, width, height);
-  }, [chartRef, exoplanets, width, height]);
+  }, [drawChart, chartRef, exoplanets, width, height]);
 
   return (
     <svg viewBox={`0 0 ${width} ${height}`} ref={chartRef}>
       {exoplanets.map((exoplanet) => (
-        <circle key={exoplanet.exoplanetName} r={2} />
+        <circle key={exoplanet.exoplanetName} />
       ))}
     </svg>
   );
