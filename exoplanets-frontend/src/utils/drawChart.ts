@@ -2,13 +2,13 @@ import {
   extent,
   scaleOrdinal,
   scaleSqrt,
-  schemePaired,
   select,
   axisBottom,
   axisLeft,
   scaleLog,
   scaleSymlog,
 } from 'd3';
+import { theme } from '../theme/theme';
 import ExoplanetType from '../types/ExoplanetType';
 
 const margin = {
@@ -60,7 +60,7 @@ const drawChart = (
 
   const discoveryScale = scaleOrdinal()
     .domain(discoveryMethods)
-    .range(schemePaired);
+    .range(theme.palette.discoveryMethods);
 
   //circles
   select(svg)
